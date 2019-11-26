@@ -3,8 +3,9 @@ module.exports = {
       if (cmd === "help") {
          const box = new RichEmbed()
             .setColor("#0080ff")
-            .setTitle(
-               "> All bot commands: \n _ping \n _info"
+            .setTitle("> All bot commands:")
+            .setDescription(
+               "**_ping \n \n _info**"
             )
             
          message.channel.send(box)

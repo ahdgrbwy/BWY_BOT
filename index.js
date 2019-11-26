@@ -1,5 +1,6 @@
 const { Client, RichEmbed } = require("discord.js");
 const { config } = require("dotenv");
+const welcomeFeature = require("./features/welcome");
 const helpFeature = require("./features/help");
 const pingFeature = require("./features/ping");
 const infoFeature = require("./features/info");
@@ -36,5 +37,7 @@ client.on("message", message => {
    pingFeature.ping(message, cmd, client);
    infoFeature.info(message, cmd, RichEmbed);
 })
+
+client.on("guildMemberAdd", member => welcomeFeature.welcome(member, RichEmbed))
 
 client.login(process.env.TOKEN); // Change it in a file .env
