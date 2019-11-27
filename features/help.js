@@ -5,7 +5,7 @@ module.exports = {
             .setColor("#0080ff")
             .setTitle("> All bot commands:")
             .setDescription(
-               "**_ping \n \n _info**"
+               "**_server \n\n _ping \n\n_info \n\n _avatar, _avatar @mention**"
             )
             
          message.channel.send(box)

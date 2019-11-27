@@ -1,9 +1,11 @@
 const { Client, RichEmbed } = require("discord.js");
 const { config } = require("dotenv");
 const welcomeFeature = require("./features/welcome");
+const serverFeature = require("./features/server");
 const helpFeature = require("./features/help");
 const pingFeature = require("./features/ping");
 const infoFeature = require("./features/info");
+const avatarFeature = require("./features/avatar");
 
 const client = new Client({
    disableEveryone: true
@@ -20,7 +22,8 @@ client.on("ready", () => {
       status: "online",
       game: {
          name: "https://ahmedessam.info/",
-         type: "WATCHING"
+         type: "WATCHING",
+         url: "https://ahmedessam.info/"
       }
    })
 })
@@ -33,9 +36,11 @@ client.on("message", message => {
    const args = message.content.slice(prefix.length).split(/ +/),
    cmd        = args.shift().toLowerCase()
 
+   serverFeature.server(message, cmd, RichEmbed);
    helpFeature.help(message, cmd, RichEmbed);
    pingFeature.ping(message, cmd, client);
    infoFeature.info(message, cmd, RichEmbed);
+   avatarFeature.avatar(message, cmd);
 })
 
 client.on("guildMemberAdd", member => welcomeFeature.welcome(member, RichEmbed))
