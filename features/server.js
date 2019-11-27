@@ -1,12 +1,15 @@
 module.exports = {
-   server: (message, cmd, RichEmbed) => {
+   server: (message, cmd, RichEmbed, moment) => {
       if (cmd === "server") {
          const m = message.guild.members;
          const box = new RichEmbed()
             .setColor("#0080ff")
             .setAuthor(message.guild.name, message.guild.iconURL)
             .addField("Server ID:",  message.guild.id, true)
-            .addField("Created in:", message.guild.createdAt.toLocaleString(), true)
+            .addField("Created in:",
+               message.guild.createdAt.toLocaleString() + "\n" 
+               + "``" + moment(message.guild.createdAt).fromNow() + "``"
+            , true)
             .addField(`Members [**${message.guild.memberCount}**]:`, 
                `**${
                   m.filter(m => m.presence.status === 'online').size
