@@ -9,6 +9,7 @@ const pingFeature = require("./features/ping");
 const infoFeature = require("./features/info");
 const avatarFeature = require("./features/avatar");
 const userInfoFeature = require("./features/userInfo");
+const rolesFeature = require("./features/roles");
 
 const app = express();
 
@@ -54,6 +55,7 @@ client.on("message", message => {
    infoFeature.info(message, cmd, RichEmbed);
    avatarFeature.avatar(message, cmd);
    userInfoFeature.userInfo(message, cmd, RichEmbed, moment)
+   rolesFeature.roles(message, cmd);
 })
 
 client.on("guildMemberAdd", member => welcomeFeature.welcome(member, RichEmbed))
